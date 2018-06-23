@@ -1,0 +1,25 @@
+{
+  "name": "simplertime",
+  "version": "1.0.0",
+  "description": "Parse time string (parseTime) & convert Date to time string (timeToString)",
+  "main": "simplertime.js",
+  "scripts": {
+    "test": "tsc && node tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qwertie/simplertime.git"
+  },
+  "keywords": [
+    "parse",
+    "time",
+    "format-time",
+    "tiny"
+  ],
+  "author": "David Piepgrass",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qwertie/simplertime/issues"
+  },
+  "homepage": "https://github.com/qwertie/simplertime#readme"
+}
