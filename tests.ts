@@ -20,7 +20,7 @@ function testKeyToDate(key: string): number // NaN if empty key
 }
 
 // TODO: convert to use unit test framework
-export function runParseTimeTests()
+function runParseTimeTests()
 {
   var testCases: any = {
     '1300':  ['1:00 pm','1:00 P.M.','1:00 p','1:00pm','1:00p.m.','1:00p','1 pm',
@@ -53,7 +53,7 @@ export function runParseTimeTests()
 }
 
 // TODO: convert to use unit test framework
-export function runTimeToStringTests()
+function runTimeToStringTests()
 {
   let testCases: any = {
     '0': ['12:00 am', '00:00'],   '30': ['12:30 am'],
