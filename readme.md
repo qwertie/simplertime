@@ -1,16 +1,20 @@
 "simplertime" time-of-day library
 ---------------------------------
 
-Parses and prints time values stored as Date or number (number of milliseconds since midnight). Full documentation is in the [source code](https://github.com/qwertie/simplertime/blob/master/simplertime.ts).
+Parses and prints time values stored as Date or number (number of milliseconds since midnight). 
+
+- 1.6KB minified
+- Understands UTC and local time
+- Full documentation is in the [source code](https://github.com/qwertie/simplertime/blob/master/simplertime.ts) (for IntelliSense).
 
 ### Examples ###
 
 ~~~js
 var now = Date.now();
-console.log("Local time (24-hour clock on, seconds off): " + 
+console.log("Local time (24-hour clock, no seconds): " + 
             timeToString(now, {use24hourTime: true, showSeconds: false}));
-console.log("Local time (24-hour clock off, seconds on): " +
-            timeToString(now, {use24hourTime: false, showSeconds: true}));
+console.log("Local time (12-hour clock with seconds): " +
+            timeToString(now, {showSeconds: true}));
 
 var fmt = {
   am: " in the morning", 
