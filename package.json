@@ -4,7 +4,7 @@
   "description": "Parse time string (parseTime) & convert Date to time string (timeToString)",
   "main": "simplertime.js",
   "scripts": {
-    "test": "ts-node tests.js",
+    "test": "ts-node tests.ts",
     "build": "tsc --declaration && npm run minify",
     "minify": "uglifyjs --compress --mangle -o dist/simplertime.min.js -- dist/simplertime.js"
   },
@@ -27,6 +27,7 @@
   "dependencies": {
     "jsmin": "^1.0.1",
     "tinydate": "^1.0.0",
+    "typescript": "^2.9.2",
     "uglify-js": "^3.4.2"
   },
   "devDependencies": {
