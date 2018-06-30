@@ -1,10 +1,4 @@
-import {parseTime, timeToString, timeToStringUTC} from './simplertime'
-
-function mod(x: number, d: number): number
-{
-    let m = x % d;
-    return m + (m < 0 ? d : 0);
-}
+import {parseTime, timeToString, timeToStringUTC, defaultTimeFormat} from './simplertime'
 
 function testKeyToDate(key: string): number // NaN if empty key
 {
@@ -42,8 +36,8 @@ function runParseTimeTests()
     let strings = testCases[key];
     for (let i = 0; i < strings.length; i++) {
       var result = parseTime(strings[i]);
-      if (result === undefined ? key !== '' : key === '' || expected !== result.valueOf()) {
-        console.log(`Test failed at ${key}:"${strings[i]}" with result ${result ? result.toUTCString() : 'undefined'}`);
+      if (result !== undefined ? key === '' || expected !== result.valueOf() : key !== '') {
+        console.log(`Test failed at ${key}:"${strings[i]}" with result ${result}`);
       } else {
         passed++;
       }
@@ -56,19 +50,19 @@ function runParseTimeTests()
 function runTimeToStringTests()
 {
   let testCases: any = {
-    '0': ['12:00 am', '00:00'],   '30': ['12:30 am'],
-    '730': ['7:30 am', '07:30'], 
-    '1159': ['11:59 am', '11:59', '11:59:00 am'],
-    '1200': ['12:00 pm', '12:00', '12:00:00 pm'],
-    '1259': ['12:59 pm'], '1300': ['1:00 pm'], 
-    '1359.75': ['1:59:45 pm', '13:59:45', '1:59:45 pm'],
-    '1359.20575': ['1:59:12.345 pm', '13:59:12.345', '1:59:12.345 pm'],
-    '2335': ['11:35 pm', '23:35', '11:35:00 pm', '23:35:00'],
-    '2405': ['12:05 am', '00:05', '12:05:00 am', '00:05:00'],
-    '2809.5': ['4:09:30 am', '04:09:30', '4:09:30 am', '04:09:30'],
-    '<2355': ['11:55 pm'], 
-    '<2249.5': ['10:49:30 pm', '22:49:30'],
-    '<303': ['3:03 am', '03:03']
+    '0': ['12:00 AM', '00:00'],   '30': ['12:30 AM'],
+    '730': ['7:30 AM', '07:30'], 
+    '1159': ['11:59 AM', '11:59', '11:59:00 AM'],
+    '1200': ['12:00 PM', '12:00', '12:00:00 PM'],
+    '1259': ['12:59 PM'], '1300': ['1:00 PM'], 
+    '1359.75': ['1:59:45 PM', '13:59:45', '1:59:45 PM'],
+    '1359.20575': ['1:59:12.345 PM', '13:59:12.345', '1:59:12.345 PM'],
+    '2335': ['11:35 PM', '23:35', '11:35:00 PM', '23:35:00'],
+    '2405': ['12:05 AM', '00:05', '12:05:00 AM', '00:05:00'],
+    '2809.5': ['4:09:30 AM', '04:09:30', '4:09:30 AM', '04:09:30'],
+    '<2355': ['11:55 PM'], 
+    '<2249.5': ['10:49:30 PM', '22:49:30'],
+    '<303': ['3:03 AM', '03:03']
   };
   for (var key in testCases) {
     let time = testKeyToDate(key);
@@ -76,7 +70,7 @@ function runTimeToStringTests()
       let expected = testCases[key][i];
       let use24hourTime = (i & 1) !== 0;
       let showSeconds = i < 2 ? undefined : true;
-      var result = timeToStringUTC(time, use24hourTime, showSeconds);
+      var result = timeToStringUTC(time, {use24hourTime, showSeconds});
       if (result !== expected) {
         console.log(`Wrong string for ${key}: got "${result}", expected "${expected}"`);
       }
@@ -84,7 +78,24 @@ function runTimeToStringTests()
   }
 }
 
-console.log(`Local time: ${timeToString(Date.now(), true, false)} / ${timeToString(Date.now(), false, true)}`);
 runTimeToStringTests();
 runParseTimeTests();
+
+var now = Date.now();
+console.log("Local time (24-hour clock on, seconds off): " + 
+            timeToString(now, {use24hourTime: true, showSeconds: false}));
+console.log("Local time (24-hour clock off, seconds on): " +
+            timeToString(now, {use24hourTime: false, showSeconds: true}));
+
+Object.assign(defaultTimeFormat, {
+  am: " in the morning", 
+  pm: " in the afternoon", 
+  evening: " in the evening"
+});
+var later = now + parseTime("7:15")!.valueOf();
+console.log("Seven hours and 15 minutes later is: " + timeToString(later));
+console.log("Which in UTC time is:                " + timeToStringUTC(later));
+console.log("Noon UTC converted to local time is: " + timeToString(parseTime("12PM")!));
+console.log("Noon local time converted to UTC is: " + timeToStringUTC(parseTime("12PM", new Date())!));
+console.log(`(UTC offset: ${new Date().getTimezoneOffset()/60} hours)`);
 console.log("Tests finished.");
