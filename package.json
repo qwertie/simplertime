@@ -1,12 +1,12 @@
 {
   "name": "simplertime",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Parse time string (parseTime) & convert Date to time string (timeToString)",
-  "main": "simplertime.js",
+  "main": "dist/simplertime.js",
   "scripts": {
     "test": "ts-node tests.ts",
     "build": "tsc --declaration && npm run minify",
-    "minify": "uglifyjs --compress --mangle -o dist/simplertime.min.js -- dist/simplertime.js",
+    "minify": "uglifyjs -cm --source-map \"content='dist/simplertime.js.map'\" -o dist/simplertime.min.js -- dist/simplertime.js",
     "prepare": "npm run build && npm test"
   },
   "repository": {
@@ -32,5 +32,5 @@
     "uglify-js": "^3.4.2",
     "@types/node": "^10.3.6"
   },
-  "files": ["readme.md", "**/simplertime.*"]
+  "files": ["readme.md", "simplertime.ts", "dist/simplertime.*"]
 }

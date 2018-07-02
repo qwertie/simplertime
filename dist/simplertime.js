@@ -1,3 +1,5 @@
+// This package was made to help people learn TypeScript & React:
+// ♥ http://typescript-react-primer.loyc.net/
 (function (factory) {
     if (typeof module === "object" && typeof module.exports === "object") {
         var v = factory(require, exports);
@@ -9,24 +11,6 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    /**
-     * Parses a string into a number of seconds since midnight. Supports several
-     * formats: "12", "1234", "12:34", "12:34pm", "12:34 PM", "12:34:56 pm", and "12:34:56.789".
-     * The time must be at the beginning of the string but can have leading spaces.
-     * Anything is allowed after the time as long as the time itself appears to
-     * be valid, e.g. "12:34*Z" is OK but "12345" is not.
-     * @param {string} t Time string, e.g. "1435" or "2:35 PM" or "14:35:00.0"
-     * @param {Date|undefined} localDate If this parameter is provided, it is
-     *        cloned and setHours is called on the clone, which is returned.
-     * @returns {Date|number|undefined} The parsed date/time, if parsing succeeded.
-     *        If a localDate was provided, this is a Date, otherwise it is a number
-     *        of milliseconds since 00:00 midnight. In the latter case, the number
-     *        is not wrapped in a Date because it could be interpreted as a time
-     *        on January 1, 1970, which does not necessarily round-trip correctly
-     *        with timeToString because Daylight Savings may be different in
-     *        January 1970 than it is today. Returning a number makes it clear that
-     *        the time is not intended to be interpreted as being in 1970.
-     */
     function parseTime(t, localDate) {
         // ?: means non-capturing group and ?! is zero-width negative lookahead
         var time = t.match(/^\s*(\d\d?)(?::?(\d\d))?(?::(\d\d))?(?!\d)(\.\d+)?\s*(pm?|am?)?/i);

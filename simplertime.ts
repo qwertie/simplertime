@@ -1,3 +1,6 @@
+// This package was made to help people learn TypeScript & React:
+// ♥ http://typescript-react-primer.loyc.net/
+
 /**
  * Parses a string into a number of seconds since midnight. Supports several
  * formats: "12", "1234", "12:34", "12:34pm", "12:34 PM", "12:34:56 pm", and "12:34:56.789".
@@ -16,6 +19,9 @@
  *        January 1970 than it is today. Returning a number makes it clear that
  *        the time is not intended to be interpreted as being in 1970.
  */
+export function parseTime(t: string, localDate: Date): Date|undefined;
+export function parseTime(t: string): number|undefined;
+
 export function parseTime(t: string, localDate?: Date): Date|number|undefined {
   // ?: means non-capturing group and ?! is zero-width negative lookahead
   var time = t.match(/^\s*(\d\d?)(?::?(\d\d))?(?::(\d\d))?(?!\d)(\.\d+)?\s*(pm?|am?)?/i);

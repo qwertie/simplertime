@@ -16,7 +16,8 @@
  *        January 1970 than it is today. Returning a number makes it clear that
  *        the time is not intended to be interpreted as being in 1970.
  */
-export declare function parseTime(t: string, localDate?: Date): Date | number | undefined;
+export declare function parseTime(t: string, localDate: Date): Date | undefined;
+export declare function parseTime(t: string): number | undefined;
 /** Calls valueOf() on the value if it is not already a number */
 export declare function unwrapDate(date: {
     valueOf(): number;
