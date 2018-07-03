@@ -7,7 +7,8 @@
     "test": "ts-node tests.ts",
     "build": "tsc --declaration && npm run minify",
     "minify": "uglifyjs -cm --source-map \"content='dist/simplertime.js.map'\" -o dist/simplertime.min.js -- dist/simplertime.js",
-    "prepare": "npm run build && npm test"
+    "prepare": "npm run build",
+    "pretest": "preview"
   },
   "repository": {
     "type": "git",
@@ -27,10 +28,11 @@
   "homepage": "https://github.com/qwertie/simplertime#readme",
   "dependencies": {},
   "devDependencies": {
-    "typescript": "^2.9.2",
+    "@types/node": "^10.3.6",
+    "package-preview": "^1.0.6",
     "ts-node": "^7.0.0",
-    "uglify-js": "^3.4.2",
-    "@types/node": "^10.3.6"
+    "typescript": "^2.9.2",
+    "uglify-js": "^3.4.2"
   },
   "files": ["readme.md", "simplertime.ts", "dist/simplertime.*"]
 }
