@@ -1,6 +1,3 @@
-// This package was made to help people learn TypeScript & React:
-// ♥ http://typescript-react-primer.loyc.net/
-
 /**
  * Parses a string into a number of seconds since midnight. Supports several
  * formats: "12", "1234", "12:34", "12:34pm", "12:34 PM", "12:34:56 pm", and "12:34:56.789".
@@ -45,7 +42,9 @@ export function parseTime(t: string, localDate?: Date): Date|number|undefined {
   return undefined;
 }
 
-/** Calls valueOf() on the value if it is not already a number */
+/** Calls valueOf() on the value if it is not already a number.
+ *  Deprecated: valueOf() exists on both Date and number, so just call that.
+ */
 export function unwrapDate(date: {valueOf():number}|number): number
 {
   return typeof date === 'number' ? date : date.valueOf();
@@ -94,7 +93,7 @@ function get<K extends keyof TimeFormatOptions>(opt: TimeFormatOptions|undefined
  */
 export function timeToStringUTC(time: Date|number, opt?: TimeFormatOptions): string
 {
-  time = unwrapDate(time);
+  time = time.valueOf();
   var op2 = defaultTimeFormat;
   opt = opt || op2;
   let perday = 24*60*60000, ms = ((time % perday) + perday) % perday;
@@ -114,11 +113,11 @@ export function timeToStringUTC(time: Date|number, opt?: TimeFormatOptions): str
 }
 
 /**
- * Converts a Date (or number of millisec since unix epoch) to a string 
- * showing the time of day.
- * @param time The Date/time to make a string from. It is expected to be
- *   a UTC time that you want adjusted to local time (unless you use 
- *   `utc:false` to prevent adjustment). Note: time zones change over
+ * Converts a Date (or number of milliseconds since unix epoch) to a 
+ * string showing the time of day.
+ * @param time The Date/time from which to make a string. It is expected 
+ *   to be a UTC time that you want adjusted to local time (unless you 
+ *   use `utc:false` to prevent adjustment). Note: time zones change over
  *   time, e.g. for daylight savings. Therefore, if you want to display
  *   a local time from the past, you must store it in a Date object with
  *   the correct date in order to get a correct time zone adjustment.
@@ -126,7 +125,7 @@ export function timeToStringUTC(time: Date|number, opt?: TimeFormatOptions): str
  */
 export function timeToString(time: Date|number, opt?: TimeFormatOptions): string
 {
-  let ms = unwrapDate(time);
+  let ms = time.valueOf();
   if (!opt || opt.utc !== true) {
     // Bug fix: we can't use `new Date(time)` here because if the `time` has 
     // no date, a time zone adjustment for January 1970 is used (may be wrong).

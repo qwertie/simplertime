@@ -1,6 +1,6 @@
 {
   "name": "simplertime",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Parse time string (parseTime) & convert Date to time string (timeToString)",
   "main": "dist/simplertime.js",
   "scripts": {
@@ -34,5 +34,9 @@
     "typescript": "^2.9.2",
     "uglify-js": "^3.4.2"
   },
-  "files": ["readme.md", "simplertime.ts", "dist/simplertime.*"]
+  "files": [
+    "readme.md",
+    "simplertime.ts",
+    "dist/simplertime.*"
+  ]
 }

@@ -1,4 +1,6 @@
-import {parseTime, timeToString, timeToStringUTC, defaultTimeFormat} from './simplertime'
+import {
+  parseTime, timeToString, timeToStringUTC, defaultTimeFormat
+} from 'simplertime';
 
 function testKeyToDate(key: string): number // NaN if empty key
 {
@@ -92,7 +94,7 @@ Object.assign(defaultTimeFormat, {
   pm: " in the afternoon", 
   evening: " in the evening"
 });
-var later = now + parseTime("7:15")!.valueOf();
+var later = now + parseTime("7:15")!;
 console.log("Seven hours and 15 minutes later is: " + timeToString(later));
 console.log("Which in UTC time is:                " + timeToStringUTC(later));
 console.log("Noon UTC converted to local time is: " + timeToString(parseTime("12PM")!));

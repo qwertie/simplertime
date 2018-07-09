@@ -18,7 +18,9 @@
  */
 export declare function parseTime(t: string, localDate: Date): Date | undefined;
 export declare function parseTime(t: string): number | undefined;
-/** Calls valueOf() on the value if it is not already a number */
+/** Calls valueOf() on the value if it is not already a number.
+ *  Deprecated: valueOf() exists on both Date and number, so just call that.
+ */
 export declare function unwrapDate(date: {
     valueOf(): number;
 } | number): number;
@@ -61,11 +63,11 @@ export declare var defaultTimeFormat: {
  */
 export declare function timeToStringUTC(time: Date | number, opt?: TimeFormatOptions): string;
 /**
- * Converts a Date (or number of millisec since unix epoch) to a string
- * showing the time of day.
- * @param time The Date/time to make a string from. It is expected to be
- *   a UTC time that you want adjusted to local time (unless you use
- *   `utc:false` to prevent adjustment). Note: time zones change over
+ * Converts a Date (or number of milliseconds since unix epoch) to a
+ * string showing the time of day.
+ * @param time The Date/time from which to make a string. It is expected
+ *   to be a UTC time that you want adjusted to local time (unless you
+ *   use `utc:false` to prevent adjustment). Note: time zones change over
  *   time, e.g. for daylight savings. Therefore, if you want to display
  *   a local time from the past, you must store it in a Date object with
  *   the correct date in order to get a correct time zone adjustment.
