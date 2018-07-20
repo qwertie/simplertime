@@ -1,6 +1,6 @@
 {
   "name": "simplertime",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Parse time string (parseTime) & convert Date to time string (timeToString)",
   "main": "dist/simplertime.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "tsc --declaration && npm run minify",
     "minify": "uglifyjs -cm --source-map \"content='dist/simplertime.js.map'\" -o dist/simplertime.min.js -- dist/simplertime.js",
     "prepare": "npm run build",
-    "pretest": "preview"
+    "safePublish": "testpack && npm publish"
   },
   "repository": {
     "type": "git",
@@ -26,10 +26,11 @@
     "url": "https://github.com/qwertie/simplertime/issues"
   },
   "homepage": "https://github.com/qwertie/simplertime#readme",
-  "dependencies": {},
+  "dependencies": {
+    "testpack-cli": "^1.0.3"
+  },
   "devDependencies": {
     "@types/node": "^10.3.6",
-    "package-preview": "^1.0.6",
     "ts-node": "^7.0.0",
     "typescript": "^2.9.2",
     "uglify-js": "^3.4.2"

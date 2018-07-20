@@ -9,9 +9,9 @@
     "jsx": "react",             // Causes inline XML (JSX code) to be expanded
     "strict": true,             // Strict types, eg. prohibits `var x=0; x=null`
     "alwaysStrict": true,       // Enable JavaScript's "use strict" mode
-    "lib": ["ES6", "DOM", "ScriptHost"], // APIs expected to exist at runtime
+    "lib": ["es5", "dom", "ScriptHost"], // APIs expected to exist at runtime
     "outDir": "dist"
   },
-  "include": ["simplertime.ts"],
+  "include": ["*.ts"],
   "exclude": ["node_modules", "dist"]
 }
