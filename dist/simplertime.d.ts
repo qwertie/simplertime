@@ -46,15 +46,7 @@ export interface TimeFormatOptions {
     utc?: boolean;
 }
 /** Default options */
-export declare var defaultTimeFormat: {
-    am: string;
-    pm: string;
-    evening: undefined;
-    use24hourTime: boolean;
-    showSeconds: null;
-    showMilliseconds: null;
-    utc: undefined;
-};
+export declare var defaultTimeFormat: TimeFormatOptions;
 /**
  * Converts a Date (or number of millisec since unix epoch) to a string
  * showing the time of day in the UTC/GMT time zone.

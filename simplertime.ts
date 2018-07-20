@@ -73,7 +73,7 @@ export interface TimeFormatOptions {
 }
 
 /** Default options */
-export var defaultTimeFormat = {
+export var defaultTimeFormat: TimeFormatOptions = {
   am: " AM", pm: " PM", evening: undefined, use24hourTime: false,
   showSeconds: null, showMilliseconds: null, utc: undefined
 };
