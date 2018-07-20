@@ -1,6 +1,6 @@
 {
   "name": "simplertime",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Parse time string (parseTime) & convert Date to time string (timeToString)",
   "main": "dist/simplertime.js",
   "scripts": {
@@ -26,14 +26,13 @@
     "url": "https://github.com/qwertie/simplertime/issues"
   },
   "homepage": "https://github.com/qwertie/simplertime#readme",
-  "dependencies": {
-    "testpack-cli": "^1.0.3"
-  },
+  "dependencies": { },
   "devDependencies": {
     "@types/node": "^10.3.6",
     "ts-node": "^7.0.0",
     "typescript": "^2.9.2",
     "uglify-js": "^3.4.2"
+    "testpack-cli": "^1.0.3"
   },
   "files": [
     "readme.md",
