@@ -1,8 +1,9 @@
 {
   "name": "simplertime",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "Parse time string (parseTime) & convert Date to time string (timeToString)",
   "main": "dist/simplertime.js",
+  "typings": "dist/simplertime",
   "scripts": {
     "test": "ts-node tests.ts",
     "build": "tsc --declaration && npm run minify",
